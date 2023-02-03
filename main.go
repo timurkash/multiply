@@ -1,11 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
-	num := []int8{1, 0, 0, 0, 0, 1}
-	num2 := []int8{9, 9, 9, 9, 9}
-	fmt.Println(multiply(num, num2))
+	num, err := stringToSlice("100001")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	num2, err := stringToSlice("99999")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	if err :=verifyNum(num); err != nil {
+		log.Fatalln(err)
+	}
+	if err :=verifyNum(num2); err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(sliceToString(multiply(num, num2)))
 }
 
 func multiply(num1, num2 []int8) (res []int8) {
